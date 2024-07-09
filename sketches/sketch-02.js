@@ -4,6 +4,10 @@ const settings = {
   dimensions: [ 1080, 1080 ]
 };
 
+const degToRad = (degrees) => {
+  return (degrees / 180 * Math.PI)
+}
+
 const sketch = () => {
   return ({ context, width, height }) => {
     context.fillStyle = 'white';
@@ -11,19 +15,34 @@ const sketch = () => {
 
     context.fillStyle = 'black'
 
-    const x = width * 0.5
-    const y = height * 0.5
-    const w = width * 0.3
-    const h = height * 0.3
+    const cx = width * 0.5
+    const cy = height * 0.5
 
-    context.save()
-    context.translate(x, y)
-    context.rotate(0.3)
+    const w = width * 0.01
+    const h = height * 0.1
 
-    context.beginPath()
-    context.rect(-w / 2, -h / 2, w, h)
-    context.fill()
-    context.restore()
+    let x, y
+    const numberOfCopies = 12
+    const circleRadius = width * 0.3
+
+    const slice = degToRad(360 / numberOfCopies )
+    for (let i = 0; i < numberOfCopies; i++) {
+      const angle = slice * i
+
+      x = circleRadius * Math.sin(angle)
+      y = circleRadius * Math.cos(angle)
+
+      context.save()
+      context.translate(x, y)
+      context.translate(cx, cy)
+      context.rotate(-angle)
+
+      context.beginPath()
+      context.rect(-w / 2, -h / 2, w, h)
+      context.fill()
+      context.restore()
+    }
+
   };
 };
 
