@@ -1,12 +1,12 @@
 # creative-programming-course
-Arquivos do curso de Programação Criativa da Domestika
+Files from Domestika's Creative Programming course
 
-# Comandos
+# Commands
 
-Para criar um novo sketch:
+To create a new sketch:
 
 `canvas-sketch <filename>.js --new --open`
 
-Para exportar um sketch como vídeo:
+To export a sketch as a video:
 
 `canvas-sketch <filename>.js --output=<outputFilename> --stream`
